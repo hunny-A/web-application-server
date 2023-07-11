@@ -6,8 +6,25 @@ import java.util.stream.Collectors;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import webserver.RequestHandler;
 
 public class HttpRequestUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(HttpRequestUtils.class);
+    public static String getUrl(String firstLine){
+        //문자열 분리 후 -> 문자열 배열에 삽입
+        String []tokens=firstLine.split(" ");
+
+        //첫번째 위치 인덱스 index.html가져옴
+        String path = tokens[1];
+
+        //분리된 첫번째라인 로그 보기 (index.html)
+        log.debug("request path : {}", path);
+        return path;
+    }
+
     /**
      * @param queryString은
      *            URL에서 ? 이후에 전달되는 field1=value1&field2=value2 형식임
